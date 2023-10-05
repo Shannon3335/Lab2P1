@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class LibraryService {
 
-    private void addBook(Book book){
+    public void addBook(Book book){
         //code to add book to repo
     }
 
-    private void getBooks() {
+    public void getBooks() {
         //code to return list of all books
     }
 }
