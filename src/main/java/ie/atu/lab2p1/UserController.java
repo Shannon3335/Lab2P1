@@ -1,15 +1,10 @@
 package ie.atu.lab2p1;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLOutput;
 
-@Controller
+@RestController
 public class UserController {
     private final UserService userService;
 
@@ -17,14 +12,15 @@ public class UserController {
     public UserController(UserService userService){
         this.userService = userService;
     }
-    @GetMapping("registerUser/{name}/{email}")
-    public void registerUser(@PathVariable String name, @PathVariable String email){
-
+    @GetMapping("/registerUser/{name}/{email}")
+    public User registerUser(@PathVariable("name")String name, @PathVariable("email")String email){
+        return new User(name, email);
     }
 
-    @PostMapping("registerUserBody")
-    public void registerUserBody(@RequestBody User user){
-        System.out.println(user.name);
-        System.out.println(user.email);
+    @PostMapping("/registerUserBody")
+    public User registerUserBody(@RequestBody User user){
+        System.out.println(user.getName());
+        System.out.println(user.getEmail());
+        return user;
     }
 }
